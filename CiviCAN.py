@@ -3,20 +3,14 @@ from c2e import c2e
 import RPi.GPIO as GPIO
 import time
 import can
+import logging
+import constants
 
 # initialize modules
-c2e = c2e.C2E(pin=12)
+c2e = c2e.C2E(pin = constants.C2E_RELAY_PIN)
 
 # initialize CAN bus
 bus = can.Bus(can_filters=[{"can_id": 0x1A6, "can_mask": 0xFFF, "extended": False}])
-
-# GPIO to control relay
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(12, GPIO.OUT)
-
-# initialize to OFF (active HIGH)
-GPIO.output(12, GPIO.LOW)
 
 lastBtnPress = False
 btnPress = False
@@ -38,6 +32,7 @@ for msg in bus:
         if (currentTime - lastPressedTime < 0.75):
             # double press the Cancel button
             c2e.trigger()
+            logging.debug("C2E triggered")
 
         # stamp this time as the last activated time
         lastPressedTime = currentTime

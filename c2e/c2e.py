@@ -1,6 +1,6 @@
 import os
 from time import sleep
-import threading
+from threading import Thread
 import RPi.GPIO as GPIO
 from pydub import AudioSegment
 from pydub.playback import play
@@ -11,10 +11,13 @@ class C2E:
         os.path.dirname(__file__), "activating-gate.wav"))
 
     def _playAudioAsync(self):
-        threading.Thread(target=play, args=(self.audioFile,)).start()
+        Thread(target=play, args=(self.audioFile,)).start()
 
     def trigger(self):
-        threading.Thread(target=self._triggerSync,).start()
+        # play audio in its own thread
+        self._playAudioAsync()
+
+        Thread(target=self._triggerSync,).start()
 
     def __init__(self, pin):
         self.pin = pin
@@ -27,9 +30,6 @@ class C2E:
         GPIO.output(pin, GPIO.LOW)
 
     def _triggerSync(self):
-        # play gate message in a new thread
-        self._playAudioAsync()
-
         # activate relay several times
         for i in range(4):
             GPIO.output(self.pin, GPIO.HIGH)
