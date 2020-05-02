@@ -2,11 +2,16 @@
 
 personal car hacking project for my 2012 Civic
 
+## Raspberry Pi Image
+
+[Download the image](https://github.com/frillweeman/CiviCAN/releases/download/1.0/rpi-car.tar.gz) from GitHub.
+
 ## Stack
 
 - Raspberry Pi w/ Raspbian Buster Lite
 - Python3
 - can-utils
+- systemd (gpio-shutdown.service and vehicle.service)
 
 ## Current Features
 
