@@ -1,0 +1,13 @@
+[Unit]
+Description=Timed GPIO shutdown when pin 5 is disconnected from ground
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+User=pi
+WorkingDirectory=/home/pi/CiviCAN
+ExecStart=/usr/bin/pipenv run python3 /home/pi/CiviCAN/gpioShutdown.py
+
+[Install]
+WantedBy=multi-user.target

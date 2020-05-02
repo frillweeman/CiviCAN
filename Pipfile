@@ -7,10 +7,10 @@ verify_ssl = true
 autopep8 = "*"
 
 [packages]
-rpi-gpio = "*"
 pydub = "*"
 cantools = "*"
 python-can = "*"
+"rpi.gpio" = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"

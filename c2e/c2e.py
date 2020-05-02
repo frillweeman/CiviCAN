@@ -13,6 +13,9 @@ class C2E:
     def _playAudioAsync(self):
         threading.Thread(target=play, args=(self.audioFile,)).start()
 
+    def trigger(self):
+        threading.Thread(target=self._triggerSync,).start()
+
     def __init__(self, pin):
         self.pin = pin
 
@@ -23,7 +26,7 @@ class C2E:
         # initialize relay to off (active high)
         GPIO.output(pin, GPIO.LOW)
 
-    def trigger(self):
+    def _triggerSync(self):
         # play gate message in a new thread
         self._playAudioAsync()
 

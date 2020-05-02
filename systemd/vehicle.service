@@ -1,0 +1,13 @@
+[Unit]
+Description=Main vehicle CAN bus monitoring script (located in /home/pi/CiviCAN)
+After=multi-user.target
+
+[Service]
+Type=simple
+Restart=always
+User=pi
+WorkingDirectory=/home/pi/CiviCAN
+ExecStart=/usr/bin/pipenv run python3 /home/pi/CiviCAN/CiviCAN.py
+
+[Install]
+WantedBy=multi-user.target
