@@ -1,0 +1,1 @@
+ATTRS{idVendor}=="0483", ACTION=="add", RUN+="/sbin/ip link set up can0 type can bitrate 500000"
