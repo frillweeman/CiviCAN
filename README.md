@@ -7,6 +7,7 @@ personal car hacking project for my 2012 Civic
 - Raspberry Pi w/ Raspbian Buster Lite
 - Python3
 - can-utils
+- systemd (gpio-shutdown.service and vehicle.service)
 
 ## Current Features
 
